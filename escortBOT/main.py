@@ -1,6 +1,8 @@
 import telebot
 from config import TOKEN
 from telebot import types
+import time
+import logging
 from sometext import text
 from img.aleksandriya.about import about as aleksandriya
 from img.beauty.about import about as beauty
@@ -137,4 +139,18 @@ def input(message):
 
 
 
-bot.polling(none_stop=True)
+while True:
+    try:
+        logging.info("Bot running..")
+        bot.polling(none_stop=True, interval=2)
+
+        # Предполагаю, что бот может мирно завершить работу, поэтому
+        # даем выйти из цикла
+        break
+    except TypeError as e:
+        logging.error(e)
+        bot.stop_polling()
+
+        time.sleep(15)
+
+        logging.info("Running again!")
