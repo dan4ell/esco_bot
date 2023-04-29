@@ -16,6 +16,10 @@ name_model = ''
 model = 0
 @bot.message_handler(commands=['start'])
 def start(message):
+    @global number
+    number = 0
+    @global model
+    model = 0
     msg = message.chat.id
     key = types.InlineKeyboardMarkup()
     key1 = types.InlineKeyboardButton(callback_data='open', text= 'Подобрать путану')
